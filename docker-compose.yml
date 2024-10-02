@@ -12,6 +12,13 @@ services:
       - "${ELASTIC_PORT}:${ELASTIC_PORT}"
     volumes:
       - /home/elk-project/elasticsearch_data:/usr/share/elasticsearch/data
+    user: "0"
+        command: >
+      bash -c '
+         echo "Setting kibana_system password";
+        until curl -s -X POST  -u "elastic:${ELASTIC_PASSWORD}" -H "Content-Type: application/json" https://${ELASTIC_IP}:${ELASTIC_PORT}/_security/user/kibana_system/_password -d "{\"password\":\"${KIBANA_PASSWORD}\"}" | grep -q "^{}"; do sleep 10; done;
+        echo "All done!";
+      '
     networks:
       elk_network:
         ipv4_address: ${ELASTIC_IP}
