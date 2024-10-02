@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:${ELASTIC_VERSION}
@@ -21,8 +23,8 @@ services:
     container_name: kibana
     environment:
       - ELASTICSEARCH_HOSTS=http://${ELASTIC_IP}:${ELASTIC_PORT}
-      - ELASTICSEARCH_USERNAME=kibana_system
       - ELASTICSEARCH_PASSWORD=${ELASTIC_PASSWORD}
+      - ELASTICSEARCH_USERNAME=elastic
     ports:
       - "${KIBANA_PORT}:${KIBANA_PORT}"
     depends_on:
