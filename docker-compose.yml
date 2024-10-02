@@ -4,7 +4,7 @@ services:
     container_name: elasticsearch
     environment:
       - discovery.type=single-node
-      - xpack.security.enabled=true
+      - xpack.security.enabled=false
       - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
       - network.host=0.0.0.0
       - http.port=${ELASTIC_PORT}
