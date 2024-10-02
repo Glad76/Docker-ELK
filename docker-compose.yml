@@ -21,8 +21,8 @@ services:
     container_name: kibana
     environment:
       - ELASTICSEARCH_HOSTS=http://${ELASTIC_IP}:${ELASTIC_PORT}
-      - ELASTICSEARCH_PASSWORD=${KIBANA_PASSWORD}
       - ELASTICSEARCH_USERNAME=kibana_system
+      - ELASTICSEARCH_PASSWORD=${KIBANA_PASSWORD}
     ports:
       - "${KIBANA_PORT}:${KIBANA_PORT}"
     depends_on:
